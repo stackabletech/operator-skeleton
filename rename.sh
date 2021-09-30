@@ -18,6 +18,10 @@ find . -name "*.yaml" -exec sed -i "s/productname/${LOWERNAME}/g" '{}' \;
 find . -name "*.yaml" -exec sed -i "s/ProductName/${PRETTYNAME}/g" '{}' \;
 find . -name "*.yaml" -exec sed -i "s/Productname/${VARNAME}/g" '{}' \;
 
+find . -name "*.toml" -exec sed -i "s/productname/${LOWERNAME}/g" '{}' \;
+find . -name "*.toml" -exec sed -i "s/ProductName/${PRETTYNAME}/g" '{}' \;
+find . -name "*.toml" -exec sed -i "s/Productname/${VARNAME}/g" '{}' \;
+
 find . -name "*.yml" -exec sed -i "s/productname/${LOWERNAME}/g" '{}' \;
 find . -name "*.yml" -exec sed -i "s/ProductName/${PRETTYNAME}/g" '{}' \;
 find . -name "*.yml" -exec sed -i "s/Productname/${VARNAME}/g" '{}' \;
