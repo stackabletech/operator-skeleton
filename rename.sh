@@ -32,3 +32,5 @@ sed -i "s/Productname/${VARNAME}/g" 'docker/Dockerfile'
 
 mv rust/operator-binary/src/stackable-productname-operator.rs rust/operator-binary/src/stackable-${LOWERNAME}-operator.rs
 mv examples/simple-productname-cluster.yaml examples/simple-${LOWERNAME}-cluster.yaml
+
+mkdir -p deploy/crd
