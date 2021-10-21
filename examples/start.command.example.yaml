@@ -1,7 +1,7 @@
-apiVersion: command.zookeeper.stackable.tech/v1alpha1
+apiVersion: command.productname.stackable.tech/v1alpha1
 kind: Start
 metadata:
-  name: zookeeper-cluster-command-start
+  name: productname-cluster-command-start
 spec:
   name: "simple"
   rolling: true
