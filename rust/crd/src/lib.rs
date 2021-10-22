@@ -111,8 +111,7 @@ impl HasClusterExecutionStatus for ProductnameCluster {
 // TODO: These all should be "Property" Enums that can be either simple or complex where complex allows forcing/ignoring errors and/or warnings
 #[derive(Clone, Debug, Deserialize, Eq, JsonSchema, PartialEq, Serialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ProductnameConfig {
-}
+pub struct ProductnameConfig {}
 
 impl Configuration for ProductnameConfig {
     type Configurable = ProductnameCluster;
@@ -166,17 +165,13 @@ impl Configuration for ProductnameConfig {
     strum_macros::EnumString,
 )]
 pub enum ProductnameVersion {
-    #[serde(rename = "362")]
-    #[strum(serialize = "362")]
-    v362,
+    #[serde(rename = "1.0.0")]
+    #[strum(serialize = "1.0.0")]
+    v1_0_0,
 
-    #[serde(rename = "361")]
-    #[strum(serialize = "361")]
-    v361,
-
-    #[serde(rename = "360")]
-    #[strum(serialize = "360")]
-    v360,
+    #[serde(rename = "2.0.0")]
+    #[strum(serialize = "2.0.0")]
+    v2_0_0,
 }
 
 impl ProductnameVersion {
@@ -274,41 +269,31 @@ mod tests {
     #[test]
     fn test_productname_version_versioning() {
         assert_eq!(
-            ProductnameVersion::v3_4_14.versioning_state(&ProductnameVersion::v3_5_8),
+            ProductnameVersion::v1_0_0.versioning_state(&ProductnameVersion::v2_0_0),
             VersioningState::ValidUpgrade
         );
         assert_eq!(
-            ProductnameVersion::v3_5_8.versioning_state(&ProductnameVersion::v3_4_14),
+            ProductnameVersion::v2_0_0.versioning_state(&ProductnameVersion::v1_0_0),
             VersioningState::ValidDowngrade
         );
         assert_eq!(
-            ProductnameVersion::v3_4_14.versioning_state(&ProductnameVersion::v3_4_14),
+            ProductnameVersion::v1_0_0.versioning_state(&ProductnameVersion::v1_0_0),
             VersioningState::NoOp
         );
     }
 
     #[test]
-
-
-    #[test]
     fn test_version_conversion() {
-        // TODO: Adapt to correct product version
-        // ProductnameVersion::from_str("3.4.14").unwrap();
-
+        ProductnameVersion::from_str("1.0.0").unwrap();
     }
 
     #[test]
     fn test_package_name() {
-        // TODO: Adapot to correct package names
         assert_eq!(
-            ProductnameVersion::v360.package_name(),
-            format!("productname-{}", ProductnameVersion::v360.to_string())
-        );
-        assert_eq!(
-            ProductnameVersion::v360.package_name(),
+            ProductnameVersion::v1_0_0.package_name(),
             format!(
                 "productname-server-{}",
-                ProductnameVersion::v360.to_string()
+                ProductnameVersion::v1_0_0.to_string()
             )
         );
     }
