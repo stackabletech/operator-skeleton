@@ -11,7 +11,7 @@ mod built_info {
 
 #[tokio::main]
 async fn main() -> Result<(), error::Error> {
-    logging::initialize_logging("ZOOKEEPER_OPERATOR_LOG");
+    logging::initialize_logging("PRODUCTNAME_OPERATOR_LOG");
 
     // Handle CLI arguments
     let matches = App::new(built_info::PKG_DESCRIPTION)
@@ -55,9 +55,10 @@ async fn main() -> Result<(), error::Error> {
             Restart,
             ProductnameCluster,
         >(client.clone()),
-        stackable_operator::command_controller::create_command_controller::<Start, ProductnameCluster>(
-            client.clone()
-        ),
+        stackable_operator::command_controller::create_command_controller::<
+            Start,
+            ProductnameCluster,
+        >(client.clone()),
         stackable_operator::command_controller::create_command_controller::<Stop, ProductnameCluster>(
             client.clone()
         )
